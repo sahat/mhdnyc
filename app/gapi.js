@@ -41,7 +41,7 @@ define(['jquery', 'async!https://apis.google.com/js/client.js!onload'], function
       // Step 6: Execute the API request
       request.execute(function(resp) {
         var authorizeButton = document.getElementById('authorize-button');
-        authorizeButton.innerText = 'Logout ' + resp.displayName;
+        authorizeButton.innerText = 'Logged in as ' + resp.displayName;
       });
     });
   }
