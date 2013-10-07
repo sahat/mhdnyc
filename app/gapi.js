@@ -1,4 +1,4 @@
-define('gapi', ['async!https://apis.google.com/js/client.js!onload'], function() {
+define(['jquery', 'async!https://apis.google.com/js/client.js!onload'], function($) {
   console.log('gapi loaded');
 
   var clientId = '552955043925.apps.googleusercontent.com';
@@ -8,20 +8,18 @@ define('gapi', ['async!https://apis.google.com/js/client.js!onload'], function()
   function handleClientLoad() {
     // Step 2: Reference the API key
     gapi.client.setApiKey(apiKey);
-    window.setTimeout(checkAuth,1);
+    window.setTimeout(checkAuth, 1);
   }
 
   function checkAuth() {
-    gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+    gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: true }, handleAuthResult);
   }
 
   function handleAuthResult(authResult) {
     var authorizeButton = document.getElementById('authorize-button');
     if (authResult && !authResult.error) {
-      authorizeButton.style.visibility = 'hidden';
       makeApiCall();
     } else {
-      authorizeButton.style.visibility = '';
       authorizeButton.onclick = handleAuthClick;
     }
   }
@@ -42,13 +40,8 @@ define('gapi', ['async!https://apis.google.com/js/client.js!onload'], function()
       });
       // Step 6: Execute the API request
       request.execute(function(resp) {
-        var heading = document.createElement('h4');
-        var image = document.createElement('img');
-        image.src = resp.image.url;
-        heading.appendChild(image);
-        heading.appendChild(document.createTextNode(resp.displayName));
-
-        document.getElementById('main').appendChild(heading);
+        var authorizeButton = document.getElementById('authorize-button');
+        authorizeButton.innerText = 'Logout ' + resp.displayName;
       });
     });
   }
