@@ -110,6 +110,11 @@ body {
   position: absolute;
 }
 
+.google-button {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .button {
   font-weight: bold;
   background: transparent;
