@@ -5,6 +5,7 @@ require.config({
 
     'almond': '../vendor/bower/almond/almond',
     'text': '../vendor/bower/requirejs-text/text',
+    'async': '../vendor/bower/requirejs-plugins/src/async',
     'underscore': '../vendor/bower/lodash/dist/lodash.underscore',
     'jquery': '../vendor/bower/jquery/jquery',
     'backbone': '../vendor/bower/backbone/backbone'
@@ -18,8 +19,8 @@ require.config({
   }
 });
 
-require(['app', 'router'], function(app, Router) {
-  app.router = new Router();
 
+require(['app', 'router', 'gapi'], function(app, Router) {
+  app.router = new Router();
   Backbone.history.start({ pushState: true, root: app.root });
 });

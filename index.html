@@ -11,7 +11,6 @@
   <!-- build:[href] /styles.min.css -->
   <link rel="stylesheet" href="/app/styles/index.css">
   <!-- /build -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -19,35 +18,18 @@
   <div class="cover second-cover"></div>
 
   <!-- Application container. -->
-  <main role="main" id="main" class="content"></main>
+  <main role="main" id="main" class="content">
+  </main>
 
   <!-- Application source. -->
   <!-- build:[src] /source.min.js -->
   <script data-main="/app/main" src="/vendor/bower/requirejs/require.js"></script>
   <!-- /build -->
 
+  <!--Add a button for the user to click to initiate auth sequence -->
   <script type="text/javascript">
-    (function() {
-      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-      po.src = 'https://apis.google.com/js/client:plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
 
-    function signinCallback(authResult) {
-      if (authResult['access_token']) {
-        // Update the app to reflect a signed in user
-        // Hide the sign-in button now that the user is authorized, for example:
-        document.getElementById('signinButton').setAttribute('style', 'display: none');
-        window.location.href = '/';
-      } else if (authResult['error']) {
-        // Update the app to reflect a signed out user
-        // Possible error values:
-        //   "user_signed_out" - User is signed-out
-        //   "access_denied" - User denied access to your app
-        //   "immediate_failed" - Could not automatically log in the user
-        console.log('Sign-in state: ' + authResult['error']);
-      }
-    }
   </script>
+
 </body>
 </html>
