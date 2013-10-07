@@ -1,8 +1,6 @@
 require.config({
   paths: {
-    // Make vendor easier to access.
     'vendor': '../vendor',
-
     'almond': '../vendor/bower/almond/almond',
     'text': '../vendor/bower/requirejs-text/text',
     'async': '../vendor/bower/requirejs-plugins/src/async',
@@ -20,7 +18,7 @@ require.config({
 });
 
 
-require(['app', 'router', 'gapi'], function(app, Router) {
+require(['app', 'router'], function(app, Router) {
   app.router = new Router();
-  Backbone.history.start({ pushState: true, root: app.root });
+  Backbone.history.start();
 });

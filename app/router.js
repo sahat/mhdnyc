@@ -2,8 +2,9 @@ define([
   'underscore',
   'jquery',
   'backbone',
-  'views/login'
-], function(_, $, Backbone, LoginView) {
+  'views/login',
+  'views/home'
+], function(_, $, Backbone, LoginView, HomeView) {
   // Defining the application router.
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -14,12 +15,20 @@ define([
     },
 
     index: function() {
-      console.log("Welcome to your / route.");
+      // Check if user is authenticated
+      if (!localStorage.isAuthenticated) {
+        Backbone.history.navigate('#login', true);
+      } else {
+        var homeView = new HomeView();
+        $('#main').html(homeView.render().el);
+        console.log("Welcome to your / route.");
+      }
     },
 
     login: function() {
       var loginView = new LoginView();
       $('#main').append(loginView.render().el);
+      console.log("Welcome to your login route.");
     },
 
     defaultAction: function(actions) {

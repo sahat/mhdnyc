@@ -2,14 +2,13 @@ define([
   'underscore',
   'jquery',
   'backbone',
-  'text!templates/login.html',
-  'gapi'
-], function(_, $, Backbone, loginTpl) {
-  var LoginView = Backbone.View.extend({
+  'text!templates/home.html'
+], function(_, $, Backbone, homeTpl) {
+  var HomeView = Backbone.View.extend({
 
     el: '#main',
 
-    template: _.template(loginTpl),
+    template: _.template(homeTpl),
 
     events: {
 
@@ -25,5 +24,5 @@ define([
     }
   });
 
-  return LoginView;
+  return HomeView;
 });

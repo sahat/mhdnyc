@@ -1,4 +1,4 @@
-define(['jquery', 'async!https://apis.google.com/js/client.js!onload'], function($) {
+define(['jquery', 'backbone', 'async!https://apis.google.com/js/client.js!onload'], function($, Backbone) {
   console.log('gapi loaded');
 
   var clientId = '552955043925.apps.googleusercontent.com';
@@ -18,6 +18,7 @@ define(['jquery', 'async!https://apis.google.com/js/client.js!onload'], function
   function handleAuthResult(authResult) {
     var authorizeButton = document.getElementById('authorize-button');
     if (authResult && !authResult.error) {
+
       makeApiCall();
     } else {
       authorizeButton.onclick = handleAuthClick;
@@ -41,7 +42,13 @@ define(['jquery', 'async!https://apis.google.com/js/client.js!onload'], function
       // Step 6: Execute the API request
       request.execute(function(resp) {
         var authorizeButton = document.getElementById('authorize-button');
-        authorizeButton.innerText = 'Logged in as ' + resp.displayName;
+
+        if (authorizeButton) {
+          authorizeButton.innerText = 'Logged in as ' + resp.displayName;
+        }
+
+        localStorage.isAuthenticated = true;
+        Backbone.history.navigate('', true);
       });
     });
   }
