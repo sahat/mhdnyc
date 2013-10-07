@@ -38,6 +38,7 @@ body {
 .content h2 {
   margin-bottom: 1rem;
   text-align: center;
+  text-shadow: 1px 1px 0 #666;
 }
 
 .content .location {
@@ -110,6 +111,7 @@ body {
 }
 
 .button {
+  font-weight: bold;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.5);
   color: #fff;
@@ -133,10 +135,6 @@ body {
   pointer-events: none;
 }
 
-#save-and-return {
-  font-weight: bold;
-  margin-top: 1.5rem;
-}
 
 .input-wrapper {
   position: relative;
