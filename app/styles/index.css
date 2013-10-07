@@ -1,6 +1,7 @@
 /*-- Bootstrap v3 -----------------------------------------------------------*/
 
 @import "../../vendor/bower/bootstrap/dist/css/bootstrap.css";
+@import url(http://fonts.googleapis.com/css?family=Julius+Sans+One);
 
 /*-- Application stylesheets. -----------------------------------------------*/
 
@@ -38,7 +39,9 @@ body {
 .content h2 {
   margin-bottom: 1rem;
   text-align: center;
-  text-shadow: 1px 1px 0 #666;
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 48px;
+  text-shadow: 1px 1px 0 #444;
 }
 
 .content .location {
