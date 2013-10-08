@@ -10,7 +10,7 @@ define([
     template: _.template(homeTpl),
 
     events: {
-
+      'click #new-playlist': 'createNewPlaylist'
     },
 
     initialize: function() {
@@ -20,6 +20,10 @@ define([
     render: function() {
       this.$el.html(this.template());
       return this;
+    },
+
+    createNewPlaylist: function() {
+      console.log('clicky');
     }
   });
 
