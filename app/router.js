@@ -9,8 +9,13 @@ define([
     routes: {
       '': 'index',
       'login': 'login',
+      'new': 'newPlaylist',
 
       '*actions': 'defaultAction'
+    },
+
+    initialize: function() {
+
     },
 
     index: function() {
@@ -30,6 +35,14 @@ define([
         var loginView = new LoginView();
         $('#main').html(loginView.render().el);
         console.log("Welcome to your login route.");
+      });
+    },
+
+    newPlaylist: function() {
+      require(['views/new_playlist'], function(NewPlaylistView) {
+        var newPlaylistView = new NewPlaylistView();
+        $('#main').html(newPlaylistView.render().el);
+        console.log('On new playlist view page');
       });
     },
 
