@@ -5,6 +5,7 @@ define([
   'text!templates/home.html'
 ], function(_, $, Backbone, homeTpl) {
   var HomeView = Backbone.View.extend({
+    el: '#main',
 
     template: _.template(homeTpl),
 
