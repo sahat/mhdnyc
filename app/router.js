@@ -2,9 +2,8 @@ define([
   'underscore',
   'jquery',
   'backbone',
-  'views/login',
   'views/home'
-], function(_, $, Backbone, LoginView, HomeView) {
+], function(_, $, Backbone, HomeView) {
   // Defining the application router.
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -26,9 +25,11 @@ define([
     },
 
     login: function() {
-      var loginView = new LoginView();
-      $('#main').append(loginView.render().el);
-      console.log("Welcome to your login route.");
+      require(['views/login'], function(LoginView) {
+        var loginView = new LoginView();
+        $('#main').append(loginView.render().el);
+        console.log("Welcome to your login route.");
+      });
     },
 
     defaultAction: function(actions) {
