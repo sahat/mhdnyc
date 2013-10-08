@@ -17,7 +17,7 @@ define([
 
     initialize: function() {
 
-      _.bindAll(this, 'handleAuthResult', 'render');
+      _.bindAll(this, 'render', 'handleAuthResult', 'handleClientLoad', 'handleAuthClick');
 
       this.clientId = '552955043925.apps.googleusercontent.com';
       this.apiKey = 'AIzaSyCI7tnAyGrkp2K8AiFQLjEWhAFaCiECxjw';
@@ -33,20 +33,22 @@ define([
 
     render: function() {
       this.$el.html(this.template());
-      this.$el.find('#authorize-button').text('Logged in as ' + this.me.displayName);
+      if (this.me) {
+        this.$el.find('#authorize-button').text('Logged in as ' + this.me.displayName);
+      }
       return this;
     },
 
     handleClientLoad: function() {
       // Step 2: Reference the API key
       console.log('Handling Client Load');
-      gapi.client.setApiKey(apiKey);
+      gapi.client.setApiKey(this.apiKey);
       window.setTimeout(_.bind(this.checkAuth, this), 1);
     },
 
     checkAuth: function() {
       console.log('Checking Auth');
-      gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: true }, this.handleAuthResult);
+      gapi.auth.authorize({ client_id: this.clientId, scope: this.scopes, immediate: true }, this.handleAuthResult);
     },
 
     handleAuthResult: function(authResult) {
@@ -65,7 +67,7 @@ define([
     handleAuthClick: function(event) {
       console.log('Handling Auth Click');
       // Step 3: get authorization to use private data
-      gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, this.handleAuthResult);
+      gapi.auth.authorize({client_id: this.clientId, scope: this.scopes, immediate: false}, this.handleAuthResult);
       return false;
     },
 
@@ -80,7 +82,6 @@ define([
         });
         // Step 6: Execute the API request
         request.execute(function(resp) {
-          self.$el.find('#authorize-button').text('Logged in as ' + resp.displayName);
           localStorage.setItem('me', JSON.stringify(resp));
           Backbone.history.navigate('', true);
         });
