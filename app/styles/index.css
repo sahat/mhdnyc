@@ -1,10 +1,14 @@
 /*-- Bootstrap v3 -----------------------------------------------------------*/
 
-@import "../../vendor/bower/bootstrap/dist/css/bootstrap.css";
+@import "../../vendor/bower/html5-boilerplate/css/normalize.css";
+@import "../../vendor/bower/html5-boilerplate/css/main.css";
+
 @import url(http://fonts.googleapis.com/css?family=Julius+Sans+One);
 
 /*-- Application stylesheets. -----------------------------------------------*/
-
+p {
+  margin: 0;
+}
 body {
   background: linear-gradient(45deg, #539fa2 0%, #72b1a4 33%, #c4dbb4 67%, #abccb1), linear-gradient(125deg, #539fa2 0%, #72b1a4 33%, #c4dbb4 67%, #abccb1);
   min-height: 100vh;
@@ -31,7 +35,6 @@ body {
   background: rgba(255,255,255,0);
   color: #fff;
   width: 50%;
-  height: 50%;
   margin: 0 auto;
   position: relative;
   padding: 2rem;
@@ -39,14 +42,16 @@ body {
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
+
+
 }
 
 .content h2 {
   margin-bottom: 1rem;
   text-align: center;
   font-family: 'Julius Sans One', sans-serif;
-  font-size: 48px;
-  text-shadow: 1px 1px 0 #444;
+  font-size: 36px;
+  text-shadow: 2px 2px 0 #444;
 }
 
 .content .location {
