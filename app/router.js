@@ -15,17 +15,14 @@ define([
     },
 
     initialize: function() {
+
     },
 
     index: function() {
-      // Check if user is authenticated
-      if (!localStorage.isAuthenticated) {
-        Backbone.history.navigate('#login', true);
-      } else {
+      // Check if user is authentielse {
         var homeView = new HomeView();
         homeView.render();
-        console.log("Welcome to your / route.");
-      }
+        console.log('Welcome to your / route');
     },
 
     login: function() {

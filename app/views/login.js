@@ -7,6 +7,8 @@ define([
 ], function(_, $, Backbone, loginTpl) {
   var LoginView = Backbone.View.extend({
 
+    el: '#main',
+
     template: _.template(loginTpl),
 
     events: {
@@ -14,18 +16,24 @@ define([
     },
 
     initialize: function() {
-      // Step 1: Configuration Keys
-      clientId = '552955043925.apps.googleusercontent.com';
-      apiKey = 'AIzaSyCI7tnAyGrkp2K8AiFQLjEWhAFaCiECxjw';
-      scopes = 'https://www.googleapis.com/auth/plus.me';
 
-      this.handleClientLoad();
+      _.bindAll(this, 'handleAuthResult', 'render');
 
-      _.bindAll(this, 'handleClientLoad', 'checkAuth', 'handleAuthResult', 'handleAuthClick', 'makeApiCall');
+      this.clientId = '552955043925.apps.googleusercontent.com';
+      this.apiKey = 'AIzaSyCI7tnAyGrkp2K8AiFQLjEWhAFaCiECxjw';
+      this.scopes = 'https://www.googleapis.com/auth/plus.me';
+
+      if (localStorage.getItem('me')) {
+        this.me = JSON.parse(localStorage.getItem('me'));
+      } else {
+        this.handleClientLoad();
+      }
+
     },
 
     render: function() {
       this.$el.html(this.template());
+      this.$el.find('#authorize-button').text('Logged in as ' + this.me.displayName);
       return this;
     },
 
@@ -33,25 +41,24 @@ define([
       // Step 2: Reference the API key
       console.log('Handling Client Load');
       gapi.client.setApiKey(apiKey);
-      window.setTimeout(this.checkAuth, 1);
+      window.setTimeout(_.bind(this.checkAuth, this), 1);
     },
 
     checkAuth: function() {
       console.log('Checking Auth');
-      console.log(this.handleAuthResult)
       gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: true }, this.handleAuthResult);
     },
 
     handleAuthResult: function(authResult) {
       console.log('Handling Auth Result');
-
-      var authorizeButton = this.$el.find('#authorize-button');
-
+      var self = this;
       if (authResult && !authResult.error) {
         console.log('Authorized!');
         this.makeApiCall();
       } else {
-        authorizeButton.onclick = this.handleAuthClick;
+        this.$el.find('#authorize-button').click(function() {
+          self.handleAuthClick();
+        });
       }
     },
 
@@ -73,13 +80,8 @@ define([
         });
         // Step 6: Execute the API request
         request.execute(function(resp) {
-          var authorizeButton = this.$el.find('#authorize-button');
-
-          if (authorizeButton) {
-            authorizeButton.innerText = 'Logged in as ' + resp.displayName;
-          }
-
-          localStorage.isAuthenticated = true;
+          self.$el.find('#authorize-button').text('Logged in as ' + resp.displayName);
+          localStorage.setItem('me', JSON.stringify(resp));
           Backbone.history.navigate('', true);
         });
       });
