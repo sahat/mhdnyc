@@ -10,7 +10,7 @@ define([
     template: _.template(homeTpl),
 
     events: {
-      'click #new-playlist': 'createNewPlaylist'
+      'click #new-playlist-button': 'createNewPlaylist'
     },
 
     initialize: function() {
@@ -23,7 +23,8 @@ define([
     },
 
     createNewPlaylist: function() {
-      console.log('clicky');
+      console.log($('#new-playlist-name').val());
+      Backbone.history.navigate('#new', true);
     }
   });
 
