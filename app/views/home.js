@@ -14,7 +14,10 @@ define([
     },
 
     initialize: function() {
-
+      if (!localStorage.getItem('me')) {
+        console.log('First time unathorized user');
+        Backbone.history.navigate('#login', true);
+      }
     },
 
     render: function() {
