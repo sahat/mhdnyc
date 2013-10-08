@@ -1,8 +1,7 @@
 define([
   'underscore',
   'jquery',
-  'backbone',
-  'views/home'
+  'backbone'
 ], function(_, $, Backbone, HomeView) {
   // Defining the application router.
   var AppRouter = Backbone.Router.extend({
@@ -19,10 +18,16 @@ define([
     },
 
     index: function() {
-      // Check if user is authentielse {
-        var homeView = new HomeView();
-        homeView.render();
-        console.log('Welcome to your / route');
+      if (localStorage.getItem('me')) {
+        require(['views/home'], function(HomeView) {
+          var homeView = new HomeView();
+          homeView.render();
+          console.log('Welcome to your / route');
+        });
+      } else {
+        console.log('First time unathorized user');
+        Backbone.history.navigate('#login', true);
+      }
     },
 
     login: function() {
