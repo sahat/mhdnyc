@@ -15,7 +15,7 @@ define([
     },
 
     initialize: function() {
-
+      this.$main = $('#main');
     },
 
     index: function() {
@@ -25,7 +25,7 @@ define([
       } else {
         var homeView = new HomeView();
         console.log(homeView.render().el);
-        $('#main').html(homeView.render().el);
+        this.$main.html(homeView.render().el);
         console.log("Welcome to your / route.");
       }
     },
@@ -33,7 +33,7 @@ define([
     login: function() {
       require(['views/login'], function(LoginView) {
         var loginView = new LoginView();
-        $('#main').html(loginView.render().el);
+        this.$main.html(loginView.render().el);
         console.log("Welcome to your login route.");
       });
     },
@@ -41,7 +41,7 @@ define([
     newPlaylist: function() {
       require(['views/new_playlist'], function(NewPlaylistView) {
         var newPlaylistView = new NewPlaylistView();
-        $('#main').html(newPlaylistView.render().el);
+        this.$main.html(newPlaylistView.render().el);
         console.log('On new playlist view page');
       });
     },
