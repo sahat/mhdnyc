@@ -5,6 +5,7 @@ define([
   'text!templates/new_playlist.html'
 ], function(_, $, Backbone, newPlaylistTpl) {
   var NewPlaylistView = Backbone.View.extend({
+    el: '#main',
 
     template: _.template(newPlaylistTpl),
 

@@ -1,5 +1,4 @@
-var async = require('async'),
-    express = require('express'),
+var express = require('express'),
     http = require('http'),
     fs = require('fs'),
     mongoose = require('mongoose'),

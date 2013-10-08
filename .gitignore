@@ -3,3 +3,4 @@
 /vendor/bower/
 /test/coverage/
 .idea/
+npm-debug.log
