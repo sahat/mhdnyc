@@ -7,8 +7,6 @@ define([
 ], function(_, $, Backbone, loginTpl) {
   var LoginView = Backbone.View.extend({
 
-    el: '#main',
-
     template: _.template(loginTpl),
 
     events: {

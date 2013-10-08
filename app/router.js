@@ -19,6 +19,7 @@ define([
         Backbone.history.navigate('#login', true);
       } else {
         var homeView = new HomeView();
+        console.log(homeView.render().el);
         $('#main').html(homeView.render().el);
         console.log("Welcome to your / route.");
       }
@@ -27,7 +28,7 @@ define([
     login: function() {
       require(['views/login'], function(LoginView) {
         var loginView = new LoginView();
-        $('#main').append(loginView.render().el);
+        $('#main').html(loginView.render().el);
         console.log("Welcome to your login route.");
       });
     },
