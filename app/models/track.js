@@ -5,7 +5,7 @@ define(['underscore', 'backbone'], function(_, Backbone) {
     defaults: {
       name: '',
       duration: '',
-      author: '',
+      artist: '',
       album: ''
     },
 

@@ -27,7 +27,7 @@ define([
 
       playlist.fetch();
 
-      //playlist.create({ name: 'Track One ', trackCount: 5 });
+      playlist.create({ name: 'Track Three', artist: 'Artist3', duration: '2:33' });
     },
 
     render: function() {
