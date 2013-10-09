@@ -41,7 +41,6 @@ define([
     newPlaylist: function() {
       require(['views/new_playlist'], function(NewPlaylistView) {
         var newPlaylistView = new NewPlaylistView();
-        newPlaylistView.render()
         console.log('On new playlist view page');
       });
     },
@@ -49,7 +48,6 @@ define([
     playlist: function() {
       require(['views/playlist'], function(Playlist) {
         var playlist = new Playlist();
-        $('#main').append(playlist.render().el);
       });
     },
 

@@ -9,17 +9,21 @@ define([
 
   var PlaylistView = Backbone.View.extend({
 
+    el: '#main',
+
     template: _.template(playlistTpl),
 
     events: {
-      // add click handlers
+
     },
 
     initialize: function() {
-      var playlist = new Playlist();
+      this.render();
 
+      var playlist = new Playlist();
       this.listenTo(playlist, 'add', this.addOne);
       this.listenTo(playlist, 'reset', this.addAll);
+      //this.listenTo(playlist, 'all', this.render);
 
       playlist.fetch();
 
@@ -27,6 +31,7 @@ define([
     },
 
     render: function() {
+      console.log('rendering')
       this.$el.html(this.template());
       return this;
     },
@@ -34,7 +39,7 @@ define([
     addOne: function (track) {
       console.log('adding one');
 			var view = new TrackView({ model: track });
-			$('#main').append(view.render().el);
+			$('#tracks').append(view.render().el);
 		},
 
 		addAll: function () {
@@ -47,4 +52,3 @@ define([
 
   return PlaylistView;
 });
-
