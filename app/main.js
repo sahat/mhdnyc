@@ -6,7 +6,8 @@ require.config({
     'async': '../vendor/bower/requirejs-plugins/src/async',
     'underscore': '../vendor/bower/lodash/dist/lodash.underscore',
     'jquery': '../vendor/bower/jquery/jquery',
-    'backbone': '../vendor/bower/backbone/backbone'
+    'backbone': '../vendor/bower/backbone/backbone',
+    'localstorage': '../vendor/bower/backbone.localStorage/backbone.localStorage'
   },
 
   shim: {
@@ -16,7 +17,6 @@ require.config({
     }
   }
 });
-
 
 require(['app', 'router'], function(app, Router) {
   app.router = new Router();

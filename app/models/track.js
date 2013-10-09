@@ -1,8 +1,18 @@
-define(['underscore', 'jquery', 'backbone'], function(_, $, Backbone) {
+define(['underscore', 'backbone'], function(_, Backbone) {
+
   var Track = Backbone.Model.extend({
+
     defaults: {
-      name: "Harry Potter"
+      name: '',
+      duration: '',
+      author: '',
+      album: ''
+    },
+
+    initialize: function() {
+      console.log('Initializing Track model');
     }
+
   });
 
   return Track;

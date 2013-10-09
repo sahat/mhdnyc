@@ -2,14 +2,14 @@ define([
   'underscore',
   'jquery',
   'backbone'
-], function(_, $, Backbone, HomeView) {
+], function(_, $, Backbone) {
   // Defining the application router.
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
       'login': 'login',
       'new': 'newPlaylist',
-
+      'playlist': 'playlist',
       '*actions': 'defaultAction'
     },
 
@@ -43,6 +43,13 @@ define([
         var newPlaylistView = new NewPlaylistView();
         newPlaylistView.render()
         console.log('On new playlist view page');
+      });
+    },
+
+    playlist: function() {
+      require(['views/playlist'], function(Playlist) {
+        var playlist = new Playlist();
+        $('#main').append(playlist.render().el);
       });
     },
 

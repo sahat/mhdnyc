@@ -3,7 +3,7 @@ define([
   'jquery',
   'backbone',
   'text!templates/home.html'
-], function(_, $, Backbone, homeTpl) {
+ ], function(_, $, Backbone, homeTpl, PlaylistView) {
   var HomeView = Backbone.View.extend({
     el: '#main',
 
@@ -19,7 +19,17 @@ define([
 
     render: function() {
       this.$el.html(this.template());
+      this.addAllPlaylists();
       return this;
+    },
+
+    addAllPlaylists: function() {
+      //this.collection.each(this.addOnePlaylist, this);
+    },
+
+    addOnePlaylist: function(model) {
+      var playlist = new PlaylistView({model: model});
+      this.$el.append(playlist.render().el);
     },
 
     createNewPlaylist: function() {
