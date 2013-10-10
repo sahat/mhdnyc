@@ -4,10 +4,11 @@ define([
   'jquery',
   'backbone',
   'text!templates/home.html',
+  'text!templates/newPlaylist.html',
   'models/playlist',
   'collections/playlists',
   'views/playlist2'
- ], function(app, _, $, Backbone, homeTpl, Playlist, PlaylistCollection, PlaylistView) {
+ ], function(app, _, $, Backbone, homeTpl, newPlaylistTpl, Playlist, PlaylistCollection, PlaylistView) {
 
   var HomeView = Backbone.View.extend({
 
@@ -33,14 +34,15 @@ define([
     },
 
     createNewPlaylist: function() {
+      // Get playlist name
       var $name = $('input#new-playlist').val();
       if (!$name) return;
 
+      // Add new playlist to playlists collection
       var playlist = new Playlist({ name: $name });
-
       this.collection.add(playlist);
 
-      //Backbone.history.navigate('#new', true);
+      this.$el.html(_.template(newPlaylistTpl, { name: playlist.get('name') }));
     }
 
   });

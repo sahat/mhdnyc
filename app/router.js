@@ -44,7 +44,7 @@ define([
     createNewPlaylist: function() {
       var self = this;
       require(['views/newPlaylist'], function(NewPlaylistView) {
-        console.log(self.collection.last())
+        console.log(self.playlists.last())
         var newPlaylistView = new NewPlaylistView();
         console.log('On new playlist view page');
       });
