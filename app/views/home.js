@@ -5,10 +5,13 @@ define([
   'backbone',
   'text!templates/home.html',
   'text!templates/newPlaylist.html',
+  'models/track',
   'models/playlist',
   'collections/playlists',
-  'views/playlist2'
- ], function(app, _, $, Backbone, homeTpl, newPlaylistTpl, Playlist, PlaylistCollection, PlaylistView) {
+  'collections/tracks'
+ ], function(app, _, $, Backbone, homeTpl, newPlaylistTpl,
+             Track, Playlist, PlaylistCollection,
+             TrackCollection) {
 
   var HomeView = Backbone.View.extend({
 
@@ -17,7 +20,8 @@ define([
     template: _.template(homeTpl),
 
     events: {
-      'click #new-playlist-button': 'createNewPlaylist'
+      'click #new-playlist-button': 'createNewPlaylist',
+      'click #parse': 'parseTracks'
     },
 
     initialize: function() {
@@ -43,6 +47,30 @@ define([
       this.collection.add(playlist);
 
       this.$el.html(_.template(newPlaylistTpl, { name: playlist.get('name') }));
+    },
+
+    parseTracks: function() {
+      var $text = $('textarea').val();
+      var splitted = $text.split('\t');
+      var withoutEmpty = _.without(splitted, '');
+
+      var trackCollection = new TrackCollection();
+
+      for (var i=0; i<withoutEmpty.length; i+=4) {
+        var trackArray = withoutEmpty.slice(i, i+4);
+
+        // Make sure array is not undefined or empty
+        if (trackArray.length) {
+          var track = new Track({
+            name: trackArray[0],
+            duration: trackArray[1],
+            artist: trackArray[2],
+            album: trackArray[3]
+          });
+
+          trackCollection.add(track);
+        }
+      }
     }
 
   });
