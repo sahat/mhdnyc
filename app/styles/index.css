@@ -105,7 +105,8 @@ p {
   line-height: 1.375rem;
 }
 
-.content input {
+.content input,
+.content textarea {
   margin: 0.5rem 0 0 0;
   padding-left: 0.5rem;
   height: 2rem;
@@ -117,11 +118,17 @@ p {
   outline: 8px solid rgba(255,255,255,0);
 }
 
-.content input:focus {
+.content textarea {
+  height: 15rem;
+}
+
+.content input:focus,
+.content textarea:focus {
   outline: 2px solid rgba(255,255,255,0.9);
 }
 
-.content input:after {
+.content input:after,
+.content textarea:after {
   content: "adgadsgeg";
   display: block;
   height: 2rem;
