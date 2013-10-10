@@ -9,8 +9,9 @@ define([
     routes: {
       '': 'index',
       'login': 'login',
-      'new': 'createNewPlaylist',
-      'playlist': 'playlist',
+      //'new': 'createNewPlaylist',
+      'playlist/:name': 'playlist',
+
       '*actions': 'defaultAction'
     },
 
@@ -41,20 +42,20 @@ define([
       });
     },
 
-    createNewPlaylist: function() {
-      var self = this;
-      require(['views/newPlaylist'], function(NewPlaylistView) {
-        console.log(self.playlists.last())
-        var newPlaylistView = new NewPlaylistView();
-        console.log('On new playlist view page');
-      });
-    },
-
-    playlist: function() {
+    playlist: function(name) {
       require(['views/playlist'], function(Playlist) {
         var playlist = new Playlist();
       });
     },
+
+//    createNewPlaylist: function() {
+//      var self = this;
+//      require(['views/newPlaylist'], function(NewPlaylistView) {
+//        console.log(self.playlists.last());
+//        var newPlaylistView = new NewPlaylistView();
+//        console.log('On new playlist view page');
+//      });
+//    },
 
     defaultAction: function(actions) {
       console.log('No route', actions);

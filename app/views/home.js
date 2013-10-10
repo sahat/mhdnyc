@@ -39,14 +39,14 @@ define([
 
     createNewPlaylist: function() {
       // Get playlist name
-      var $name = $('input#new-playlist').val();
-      if (!$name) return;
+      this.$name = $('input#new-playlist').val();
+      if (!this.$name) return;
 
-      // Add new playlist to playlists collection
-      var playlist = new Playlist({ name: $name });
-      this.collection.add(playlist);
+//      // Add new playlist to playlists collection
+//      var playlist = new Playlist({ name: $name });
+//      this.collection.add(playlist);
 
-      this.$el.html(_.template(newPlaylistTpl, { name: playlist.get('name') }));
+      this.$el.html(_.template(newPlaylistTpl, { name: this.$name }));
     },
 
     parseTracks: function() {
@@ -71,6 +71,9 @@ define([
           trackCollection.add(track);
         }
       }
+
+      var playlist = new Playlist({ name: this.$name, tracks: trackCollection });
+      this.collection.add(playlist);
     }
 
   });
