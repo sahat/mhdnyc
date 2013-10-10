@@ -2,8 +2,10 @@ define([
   'underscore',
   'jquery',
   'backbone',
-  'text!templates/home.html'
- ], function(_, $, Backbone, homeTpl, PlaylistView) {
+  'text!templates/home.html',
+  'views/playlist',
+  'collections/playlist'
+ ], function(_, $, Backbone, homeTpl, PlaylistView, Playlist) {
   var HomeView = Backbone.View.extend({
     el: '#main',
 
@@ -19,22 +21,16 @@ define([
 
     render: function() {
       this.$el.html(this.template());
-      this.addAllPlaylists();
       return this;
-    },
-
-    addAllPlaylists: function() {
-      //this.collection.each(this.addOnePlaylist, this);
-    },
-
-    addOnePlaylist: function(model) {
-      var playlist = new PlaylistView({model: model});
-      this.$el.append(playlist.render().el);
     },
 
     createNewPlaylist: function() {
       console.log($('#new-playlist-name').val());
-      Backbone.history.navigate('#new', true);
+      var playlist = Playlist();
+      var playlistView = new PlaylistView({
+        collection: playlist
+      });
+      //Backbone.history.navigate('#new', true);
     }
   });
 
