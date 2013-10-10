@@ -1,5 +1,6 @@
 define([
   'app',
+  'string',
   'underscore',
   'jquery',
   'backbone',
@@ -9,7 +10,7 @@ define([
   'models/playlist',
   'collections/playlists',
   'collections/tracks'
- ], function(app, _, $, Backbone, homeTpl, newPlaylistTpl,
+ ], function(app, S, _, $, Backbone, homeTpl, newPlaylistTpl,
              Track, Playlist, PlaylistCollection,
              TrackCollection) {
 
@@ -20,6 +21,7 @@ define([
     template: _.template(homeTpl),
 
     events: {
+      'click .location': 'playlist',
       'click #new-playlist-button': 'createNewPlaylist',
       'click #parse': 'parseTracks'
     },
@@ -37,6 +39,17 @@ define([
       return this;
     },
 
+    playlist: function(e) {
+      var name = $(e.target)
+        .clone()
+        .children()
+        .remove()
+        .end()
+        .text();
+      name = S(name).slugify();
+      Backbone.history.navigate('#playlist/' + name);
+    }
+    ,
     createNewPlaylist: function() {
       // Get playlist name
       this.$name = $('input#new-playlist').val();
