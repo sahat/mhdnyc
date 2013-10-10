@@ -22,7 +22,7 @@ define([
     initialize: function() {
       this.listenTo(this.collection, 'add', this.render);
 
-      this.collection.reset([{name: "Asia"}, {name: "Africa"}]);
+      this.collection.reset([{name: "Andrea's Music"}, {name: "Trance 2013"}]);
     },
 
     render: function() {
@@ -33,12 +33,12 @@ define([
     },
 
     createNewPlaylist: function() {
-      var $name = $('#new-playlist-name').val();
+      var $name = $('input#new-playlist').val();
       if (!$name) return;
 
       var playlist = new Playlist({ name: $name });
 
-      app.playlistCollection.add(playlist);
+      this.collection.add(playlist);
 
       //Backbone.history.navigate('#new', true);
     }

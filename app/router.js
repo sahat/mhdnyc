@@ -9,19 +9,21 @@ define([
     routes: {
       '': 'index',
       'login': 'login',
-      'new': 'newPlaylist',
+      'new': 'createNewPlaylist',
       'playlist': 'playlist',
       '*actions': 'defaultAction'
     },
 
     initialize: function() {
-
+      this.playlists = new PlaylistCollection();
     },
 
     index: function() {
+      var self = this;
+
       if (localStorage.getItem('me')) {
         require(['views/home'], function(HomeView) {
-          var homeView = new HomeView({ collection: new PlaylistCollection() });
+          var homeView = new HomeView({ collection: self.playlists });
           homeView.render();
           console.log('Welcome to your / route');
         });
@@ -39,8 +41,10 @@ define([
       });
     },
 
-    newPlaylist: function() {
-      require(['views/new_playlist'], function(NewPlaylistView) {
+    createNewPlaylist: function() {
+      var self = this;
+      require(['views/newPlaylist'], function(NewPlaylistView) {
+        console.log(self.collection.last())
         var newPlaylistView = new NewPlaylistView();
         console.log('On new playlist view page');
       });
