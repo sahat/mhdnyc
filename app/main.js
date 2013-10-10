@@ -7,7 +7,8 @@ require.config({
     'underscore': '../vendor/bower/lodash/dist/lodash.underscore',
     'jquery': '../vendor/bower/jquery/jquery',
     'backbone': '../vendor/bower/backbone/backbone',
-    'localstorage': '../vendor/bower/backbone.localStorage/backbone.localStorage'
+    'localstorage': '../vendor/bower/backbone.localStorage/backbone.localStorage',
+    'string': '../vendor/bower/stringjs/string'
   },
 
   shim: {

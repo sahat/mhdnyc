@@ -12,6 +12,7 @@
     "jasmine": "~1.3.1",
     "sinon": "~1.7.3",
     "requirejs-plugins": "~1.0.2",
-    "backbone.localStorage": "~1.1.0"
+    "backbone.localStorage": "~1.1.0",
+    "stringjs": "~1.6.0"
   }
 }
