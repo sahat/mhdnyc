@@ -1,6 +1,6 @@
 define(['underscore', 'backbone', 'localstorage', 'models/track'], function(_, Backbone, Store, Track) {
 
-  var Playlist = Backbone.Collection.extend({
+  var TrackCollection = Backbone.Collection.extend({
 
     model: Track,
 
@@ -12,5 +12,5 @@ define(['underscore', 'backbone', 'localstorage', 'models/track'], function(_, B
 
   });
 
-  return Playlist;
+  return TrackCollection;
 });
