@@ -20,28 +20,25 @@ define([
     },
 
     initialize: function() {
-      app.playlistCollection = new PlaylistCollection(); // move into routeer and then call as this.collection
-      //this.listenTo(app.playlistCollection, 'add', this.render);
+      this.listenTo(this.collection, 'add', this.render);
 
-
-      app.playlistCollection.reset([{name: "Asia"}, {name: "Africa"}]);
+      this.collection.reset([{name: "Asia"}, {name: "Africa"}]);
     },
 
     render: function() {
       this.$el.html(this.template({
-        collection: app.playlistCollection.toJSON()
+        collection: this.collection.toJSON()
       }));
       return this;
     },
 
     createNewPlaylist: function() {
       var $name = $('#new-playlist-name').val();
+      if (!$name) return;
+
       var playlist = new Playlist({ name: $name });
 
       app.playlistCollection.add(playlist);
-
-      var view = new PlaylistView({ model: playlist });
-			$('#main').append(view.render().el);
 
       //Backbone.history.navigate('#new', true);
     }

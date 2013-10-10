@@ -1,8 +1,9 @@
 define([
   'underscore',
   'jquery',
-  'backbone'
-], function(_, $, Backbone) {
+  'backbone',
+  'collections/playlists'
+], function(_, $, Backbone, PlaylistCollection) {
   // Defining the application router.
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -20,7 +21,7 @@ define([
     index: function() {
       if (localStorage.getItem('me')) {
         require(['views/home'], function(HomeView) {
-          var homeView = new HomeView();
+          var homeView = new HomeView({ collection: new PlaylistCollection() });
           homeView.render();
           console.log('Welcome to your / route');
         });
