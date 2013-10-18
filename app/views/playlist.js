@@ -30,7 +30,6 @@ define([
     },
 
     render: function() {
-      window.ply = this.collection.get('tracks');
       console.log('Rendering playlist view');
       this.$el.html(this.template({
         collection: this.collection.get('tracks').toJSON()
