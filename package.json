@@ -18,7 +18,8 @@
     "karma-coverage": "~0.1.0",
 
     "express": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "conntect-mongo": "*"
   },
 
   "peerDependencies": {

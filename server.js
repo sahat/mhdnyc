@@ -3,7 +3,8 @@ var express = require('express'),
     fs = require('fs'),
     mongoose = require('mongoose'),
     path = require('path'),
-    request = require('request');
+    request = require('request'),
+    MongoStore = require('connect-mongo')(express);
 
 var app = express();
 
@@ -27,31 +28,12 @@ var User = mongoose.model('User', UserSchema);
 
 // Express Configuration
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-app.locals.pretty = true;
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser({
-  uploadDir: __dirname,
-  keepExtensions: true
-}));
-app.use(express.cookieParser());
-app.use(express.session({
-  secret: 'topsecretz',
-  //store: new MongoStore({db:'localhost'})
-  store: new MongoStore({ url: config.MONGOLAB })
-}));
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, '')));
-// app.use(function(err, req, res, next) {
-//   console.error(err.stack);
-//   res.send(500, 'Something broke.');
-// });
 
 // development only
 if ('development' == app.get('env')) {
