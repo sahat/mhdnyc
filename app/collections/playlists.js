@@ -4,7 +4,7 @@ define(['underscore', 'backbone', 'localstorage', 'models/playlist'], function(_
 
     model: Playlist,
 
-    localStorage: new Store('mhdnyc'),
+    localStorage: new Store('playlists'),
 
     initialize: function() {
       console.log('Creating a playlists collection');

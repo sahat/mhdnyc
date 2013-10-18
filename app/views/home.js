@@ -10,9 +10,9 @@ define([
   'models/playlist',
   'collections/playlists',
   'collections/tracks'
- ], function(app, S, _, $, Backbone, homeTpl, newPlaylistTpl,
-             Track, Playlist, PlaylistCollection,
-             TrackCollection) {
+], function(app, S, _, $, Backbone, homeTpl, newPlaylistTpl,
+           Track, Playlist, PlaylistCollection,
+           TrackCollection) {
 
   var HomeView = Backbone.View.extend({
 
@@ -47,7 +47,7 @@ define([
         .end()
         .text();
       name = S(name).slugify();
-      Backbone.history.navigate('#playlist/' + name);
+      Backbone.history.navigate('#playlist/' + name, true);
     }
     ,
     createNewPlaylist: function() {

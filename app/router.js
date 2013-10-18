@@ -3,7 +3,8 @@ define([
   'jquery',
   'backbone',
   'collections/playlists'
-], function(_, $, Backbone, PlaylistCollection) {
+], function(_, $, Backbone, Playlists) {
+
   // Defining the application router.
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -16,7 +17,7 @@ define([
     },
 
     initialize: function() {
-      this.playlists = new PlaylistCollection();
+      this.playlists = new Playlists();
     },
 
     index: function() {
@@ -43,8 +44,11 @@ define([
     },
 
     playlist: function(name) {
+      var self = this;
       require(['views/playlist'], function(Playlist) {
-        var playlist = new Playlist();
+        var playlist = new Playlist({
+          collection: self.playlists.where({ name: name })[0]
+        });
       });
     },
 

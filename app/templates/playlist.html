@@ -1,3 +1,7 @@
-<div class="location">
-  <p><%- name %> <span class="zip">0 tracks</span><span class="remove">×</span></p>
+<div id="playlists">
+  <% _.each(collection, function(model) { %>
+    <div class="location">
+      <p><%- model.name %> - <%- model.artist %> <span class="zip"><%- model.duration %></span><span class="remove">×</span></p>
+    </div>
+  <% }); %>
 </div>

@@ -27,7 +27,7 @@ var UserSchema = mongoose.model('User', new mongoose.Schema({
 var User = mongoose.model('User', UserSchema);
 
 // Express Configuration
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8000);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -50,12 +50,8 @@ app.get('/login', function(req, res) {
         accessToken: accessToken,
         displayName: profile.displayName,
         link: profile._json.link,
-        picture: profile._json.picture,
         gender: profile._json.gender,
         email: profile._json.email,
-        locale: profile._json.locale,
-        verified: profile._json.verified_email,
-        isAdmin: userCount < 1
       });
       user.save(function(err) {
         if (err) throw err;
@@ -65,11 +61,9 @@ app.get('/login', function(req, res) {
   });
 });
 
-// Starts the express application
-app.listen(3000, 'localhost', function() {
-  console.log('Express server started listening');
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
 });
-
 
 process.on('uncaughtException', function(err) {
   console.error(err);

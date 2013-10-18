@@ -12,6 +12,7 @@ define(['underscore', 'backbone', 'collections/tracks'], function(_, Backbone, T
 
     initialize: function() {
       console.log('Creating a playlist model');
+      console.log(this);
     }
 
   });
